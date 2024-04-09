@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Lista de libros</h1>
+
+    {% if object_list %}
+    <ul>
+
+    {% for libro in object_list %}
+      <li>
+        {% if requests.user.usertype == 'editor' or request.user.usertype == 'admin' %}
+        <p><a href="{% url 'biblioteca:update-libro' libro.pk %}">{{ libro.titulo }}</a></p> 
+        {% else %}
+        <p> {{ libro.titulo }}</p>
+        {% endif %}
+        {% for autor in libro.Autor.all %}
+
+        
+
+            <p> Autor: {{ autor.nombre }} {{autor.apellidos}} ({{autor.nacionalidad}})</p>
+        {% endfor %}
+    
+        {% for genero in libro.genero.all %}
+                <p> Genero:{{ genero.nombre }}</p>
+        {% endfor %}
+
+        <p>A&#241o de edicion:{{ libro.ano_edicion}}</p>
+        <p> Isbn:{{ libro.isbn }}</p>
+
+        <p>Editorial: {{   libro.editorial.nombre }} {{ libro.editorial.pais }}</p>
+
+
+    </li> 
+    {% endfor %}   
+    </ul>
+    {% else %}
+      <p>No hay libros en la biblioteca.</p>
+    {% endif %}
+{% endblock %}

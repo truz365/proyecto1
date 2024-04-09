@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block titulo %}
+login 
+{% endblock %}
+
+
+{% block content %}
+<div class="content-main login">
+    <form method="post" clas="login-form"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar sesión</button>
+        <div class="reset-password">
+
+        </div>
+    </form> 
+
+</div>
+{% endblock %}
+

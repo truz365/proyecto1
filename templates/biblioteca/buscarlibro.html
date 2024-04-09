@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Libros</title>
+</head>
+<body>
+    <h1>Buscar Libros</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>
